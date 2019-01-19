@@ -21,6 +21,12 @@ public class MoodleCoursesApplication {
 					"https://hhmoodle.haaga-helia.fi/course/view.php?id=18295"));
 			repo.save(new MoodleCourse("Matikka", 
 					"https://hhmoodle.haaga-helia.fi/course/view.php?id=23488"));
+			repo.save(new MoodleCourse("Innovointi",
+					"https://hhmoodle.haaga-helia.fi/course/view.php?id=22782"));
+			repo.save(new MoodleCourse("Yrityksen toiminnot",
+					"https://hhmoodle.haaga-helia.fi/course/view.php?id=22107"));
+			repo.save(new MoodleCourse("Java-Ohjelmointi",
+					"https://hhmoodle.haaga-helia.fi/course/view.php?id=21311"));
 		};
 	}
 }

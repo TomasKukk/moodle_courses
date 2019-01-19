@@ -3,18 +3,25 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
     <title>Server programming</title>
 </head>
 <body>
-<h1>Add a new book to the booklist</h1>
+<div class="container">
+<h1>Lisää uusi kurssi sivulle</h1>
 <form action="#" th:object="${moodlecourse}" th:action="@{index}" method="post">
+<div class="form-group">
 <label for="name">Anna kurssille nimi</label>
-<input type="text" id="name" th:field="*{courseName}" />
-</br>
+<input class="form-control" type="text" id="name" th:field="*{courseName}" />
+</div>
+<div class="form-group">
 <label for="link">Laita tähän kurssin linkki</label>
-<input type="text" id="link" th:field="*{courseLink}" />
-</br>
-<input type="submit" value="Save"></input>
+<input class="form-control" type="text" id="link" th:field="*{courseLink}" />
+</div>
+<div class="form-group">
+<input class="btn btn-default" type="submit" value="Save"></input>
+</div>
 </form>
+</div>
 </body>
 </html>
