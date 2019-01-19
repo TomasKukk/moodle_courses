@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Server programming</title>
+</head>
+<body>
+<h1>Add a new book to the booklist</h1>
+<form action="#" th:object="${moodlecourse}" th:action="@{index}" method="post">
+<label for="name">Anna kurssille nimi</label>
+<input type="text" id="name" th:field="*{courseName}" />
+</br>
+<label for="link">Laita tähän kurssin linkki</label>
+<input type="text" id="link" th:field="*{courseLink}" />
+</br>
+<input type="submit" value="Save"></input>
+</form>
+</body>
+</html>

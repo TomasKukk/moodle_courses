@@ -10,12 +10,17 @@ import javax.persistence.Id;
 public class MoodleCourse {
 	
 	@Id
-	@GeneratedValue(strategy=Generation.Type.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String courseName;
 	private String courseLink;
 	public long getId() {
 		return id;
+	}
+	public MoodleCourse() {}
+	public MoodleCourse(String courseName, String courseLink) {
+		this.courseName = courseName;
+		this.courseLink = courseLink;
 	}
 	public void setId(long id) {
 		this.id = id;
