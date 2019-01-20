@@ -2,7 +2,6 @@ package com.example.moodle_courses.web;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,18 +9,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.moodle_courses.domain.CourseRepository;
+import com.example.moodle_courses.domain.MongoRepo;
 import com.example.moodle_courses.domain.MoodleCourse;
 
 @Controller
 public class MainController {
 	// Asettaa setterit ja getterit automaattisesti
 	@Autowired
-	private CourseRepository repo;
-	private final AtomicLong counter = new AtomicLong();
+	private MongoRepo repo;
 	
 	// Restful kaikki kurssi (json)
 	@GetMapping("/courses")
@@ -30,9 +30,9 @@ public class MainController {
 	}
 	
 	// Etsitään kurssi nimellä restful (palauttaa json)
-	@GetMapping("/course/{id}")
-	public @ResponseBody Optional<MoodleCourse> findCourseById (@PathVariable("id") Long courseId) {
-		return repo.findById(courseId);
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public Optional<MoodleCourse> getUser (@PathVariable String id) {
+		return repo.findById(id);
 	}
 	// Kurssien lisäämiselle
 	@RequestMapping("/addcourse")
@@ -44,27 +44,27 @@ public class MainController {
 	@GetMapping("/index")
 	public String showCourses (Model model) {
 		model.addAttribute("courses", repo.findAll());
-		return ("/index");
+		return ("index");
 	}
 	// Tämä hoitaa POST pyynnön joka lisää uuden kurssin
 	@PostMapping("/index")
-	public String addNewCourse (MoodleCourse course) {
+	public String addNewCourse  (MoodleCourse course) {
 		repo.save(course);
 		return ("redirect:/index");
 	}
 	//Käydyn kurssin poistaminen
 	@GetMapping("/delete/{id}")
-	public String deleteCourse (@PathVariable("id")Long courseId,
+	public String deleteCourse (@PathVariable String id,
 			Model model) {
-		repo.deleteById(courseId);
+		repo.deleteById(id);
 		return ("redirect:/index");
 	}
 	
 	//Kurssin nimen tai linkin editoimiseen
 	@RequestMapping("/edit/{id}")
-	public String editCourse (@PathVariable("id")Long courseId,
+	public String editCourse (@PathVariable String id,
 			Model model) {
-		model.addAttribute("moodlecourse", repo.findById(courseId));
+		model.addAttribute("moodlecourse", repo.findById(id));
 		return ("edit");
 	}
 	

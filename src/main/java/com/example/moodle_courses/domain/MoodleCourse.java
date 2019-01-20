@@ -1,20 +1,25 @@
 package com.example.moodle_courses.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@Entity
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="courses")
 public class MoodleCourse {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	public String id;
+	private int seq;
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
 	private String courseName;
 	private String courseLink;
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 	public MoodleCourse() {}
@@ -22,7 +27,7 @@ public class MoodleCourse {
 		this.courseName = courseName;
 		this.courseLink = courseLink;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getCourseName() {
@@ -41,5 +46,4 @@ public class MoodleCourse {
 	public String toString() {
 		return "MoodleCourse [id=" + id + ", courseName=" + courseName + ", courseLink=" + courseLink + "]";
 	}
-	
 }
