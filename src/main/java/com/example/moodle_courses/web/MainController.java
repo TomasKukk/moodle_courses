@@ -9,9 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.moodle_courses.domain.MongoRepo;
@@ -23,15 +21,23 @@ public class MainController {
 	@Autowired
 	private MongoRepo repo;
 	
+
+	
 	// Restful kaikki kurssi (json)
 	@GetMapping("/courses")
 	public @ResponseBody List<MoodleCourse> courseListRest() {
 		return (List<MoodleCourse>) repo.findAll();
 	}
 	
+	// Redirect to index when /login throws to /
+	@RequestMapping("/")
+	public String toIndex () {
+		return ("redirect:/index");
+	}
 	// Etsitään kurssi nimellä restful (palauttaa json)
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Optional<MoodleCourse> getUser (@PathVariable String id) {
+	@GetMapping("/course/{id}")	
+	public @ResponseBody Optional<MoodleCourse> getUser (@PathVariable String id) {
+		System.out.println(repo.findById(id));
 		return repo.findById(id);
 	}
 	// Kurssien lisäämiselle
@@ -67,9 +73,6 @@ public class MainController {
 		model.addAttribute("moodlecourse", repo.findById(id));
 		return ("edit");
 	}
-	
-	
-	
 	
 	
 	

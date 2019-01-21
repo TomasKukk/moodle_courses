@@ -1,13 +1,18 @@
 package com.example.moodle_courses.domain;
 
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="users")
 public class User {
-
+	
+	@ManyToOne
+	@JoinColumn(name = "userid")
+	private User user;
 	@Id
 	@Column(name = "id", nullable = false, updatable = false)
 	private String id;

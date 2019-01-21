@@ -1,12 +1,21 @@
 package com.example.moodle_courses.domain;
 
 
-import org.bson.types.ObjectId;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Document(collection="courses")
 public class MoodleCourse {
+	
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "userId")
+	private User user;
 	
 	@Id
 	public String id;
