@@ -1,7 +1,6 @@
 package com.example.moodle_courses.web;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,21 +11,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.moodle_courses.domain.MongoRepo;
 import com.example.moodle_courses.domain.MoodleCourse;
+import com.example.moodle_courses.domain.User;
+import com.example.moodle_courses.domain.UserRepo;
 
 @Controller
 public class MainController {
 	// Asettaa setterit ja getterit automaattisesti
 	@Autowired
-	private MongoRepo repo;
+	private UserRepo repo;
 	
 
 	
 	// Restful kaikki kurssi (json)
 	@GetMapping("/courses")
-	public @ResponseBody List<MoodleCourse> courseListRest() {
-		return (List<MoodleCourse>) repo.findAll();
+	public @ResponseBody List<User> courseListRest() {
+		System.out.print(repo.findAll());
+		return (List<User>) repo.findAll();
 	}
 	
 	// Redirect to index when /login throws to /
@@ -50,12 +51,12 @@ public class MainController {
 		return ("index");
 	}
 	// Tämä hoitaa POST pyynnön joka lisää uuden kurssin
-	@PostMapping("/index")
-	public String addNewCourse  (MoodleCourse course) {
-		repo.save(course);
-		return ("redirect:/index");
-	}
-	//Käydyn kurssin poistaminen
+//	@PostMapping("/index")
+//	public String addNewCourse  (MoodleCourse course) {
+//		repo.save(course);
+//		return ("redirect:/index");
+//	}
+//	//Käydyn kurssin poistaminen
 	@GetMapping("/delete/{id}")
 	public String deleteCourse (@PathVariable String id,
 			Model model) {

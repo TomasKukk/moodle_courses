@@ -14,15 +14,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Document(collection="users")
 public class User {
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	@JsonIgnore
-	private List<MoodleCourse> courses;
+	
 
 	
 	@Id
 	@Column(name = "id", nullable = false, updatable = false)
 	private String id;
 	
+	
+
 	@Column(name="username", nullable = false, unique=true)
 	private String username;
 	
@@ -31,7 +31,16 @@ public class User {
 	
 	@Column(name="role", nullable = false)
 	private String role;	
-
+	public List<MoodleCourse> getCourses() {
+		return courses;
+	}
+	@Column(name="courses", nullable=false, updatable=true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@JsonIgnore
+	private List<MoodleCourse> courses;
+	public void setCourses(List<MoodleCourse> courses) {
+		this.courses = courses;
+	}
 	public User() {
 	}
 
