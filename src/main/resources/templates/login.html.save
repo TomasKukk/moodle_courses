@@ -7,15 +7,15 @@
     <title>Server programming</title>
 </head>
 <body>
-<h1>Kirjautuminen</h1>
+<h1>Login</h1>
 <div th:if="${param.error}">
-Väärä käyttäjätunnus tai salasana.
+Invalid username and password.
 </div>
 <form th:action="@{/login}" method="post">
 <div class="form-group">
-<div><label> Käyttäjätunnus : <input class="form-control" type="text" name="username"/> </label></div>
+<div><label> Username : <input class="form-control" type="text" name="Käytt"/> </label></div>
 </div><div class="form-group">
-<div><label> Salasana : <input class="form-control" type="password" name="password"/> </label></div>
+<div><label> Password: <input class="form-control" type="password" name="password"/> </label></div>
 </div>
 <div><input type="submit" value="Kirjaudu sisään"/></div>
 </form>

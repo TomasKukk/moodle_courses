@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -17,7 +18,10 @@
 </head>
 <body>
 <h1>Moodle kurssit</h1>
-	<a style="margin-bottom:50px;margin-left:5px;" href="/addcourse" class="btn btn-success btn-lg">Lisää tästä uusi kurssi</a>
+<a style="margin-bottom:25px;margin-left:5px;" href="/addcourse" class="btn btn-success btn-lg">Lisää tästä uusi kurssi</a>
+<form th:action="@{/logout}" method="post">
+<input style="margin-left:5px;margin-bottom:50px;" class="btn btn-warning btn-lg" type="submit" value="Kirjaudu ulos"/>
+</form>
 <table class="table table-striped table-hover table-condensed">
 	<tr th:each = "course : ${courses}">
 	<td>
@@ -26,5 +30,6 @@
 	<td><a th:href="@{/edit/{id}(id=${course.id})}" class="btn btn-success btn-lg">Editoi tätä kurssia</a></td>
 	<td><a th:href="@{/delete/{id}(id=${course.id})}" class="btn btn-danger btn-lg">Poista tämä kurssi</a></td>
 </table>
+
 </body>
 </html>

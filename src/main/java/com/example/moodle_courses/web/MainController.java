@@ -34,12 +34,9 @@ public class MainController {
 	public String toIndex () {
 		return ("redirect:/index");
 	}
-	// Etsitään kurssi nimellä restful (palauttaa json)
-	@GetMapping("/course/{id}")	
-	public @ResponseBody Optional<MoodleCourse> getUser (@PathVariable String id) {
-		System.out.println(repo.findById(id));
-		return repo.findById(id);
-	}
+	
+	// Etsitään kurssi nimellä restful (palauttaa json) onnistuu /api/moodleCourses/{id} avulla 
+	
 	// Kurssien lisäämiselle
 	@RequestMapping("/addcourse")
 	public String showAllCourses (Model model) {
