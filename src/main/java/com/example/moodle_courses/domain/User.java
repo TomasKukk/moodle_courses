@@ -1,18 +1,24 @@
 package com.example.moodle_courses.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Document(collection="users")
 public class User {
 	
-	@ManyToOne
-	@JoinColumn(name = "userid")
-	private User user;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@JsonIgnore
+	private List<MoodleCourse> courses;
+
+	
 	@Id
 	@Column(name = "id", nullable = false, updatable = false)
 	private String id;
