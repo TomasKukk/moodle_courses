@@ -11,11 +11,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+//mongo collection users joka tallentaa column kentät db:hen
 @Document(collection="users")
 public class User {
-	
-	
-
 	
 	@Id
 	@Column(name = "id", nullable = false, updatable = false)

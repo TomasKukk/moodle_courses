@@ -24,6 +24,7 @@ public class MoodleCoursesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MoodleCoursesApplication.class, args);
 	}
+	// tehdään kurssit ja käyttäjät ohjelman alkaessa
 	@Bean
 	public CommandLineRunner demo (MongoRepo mrepo, UserRepo urepo) {
 		return (args) -> {
@@ -49,6 +50,7 @@ public class MoodleCoursesApplication {
 			urepo.save(user1);
 			urepo.save(user2);
 			List<User> users = urepo.findAll();
+			// debuggaamista varten tulostetaan käyttäjät
 			for (User u: users) {
 				System.out.println(u.toString());
 			}

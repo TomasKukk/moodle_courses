@@ -20,7 +20,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	public UserDetailServiceImpl(UserRepo repo) {
 		this.repo = repo;
 	}
-	
+	// autentkoidaan käyttäjä syöttämänsä tietojen avulla
 	@Override
 	public UserDetails loadUserByUsername(String username) throws 
 	UsernameNotFoundException {
