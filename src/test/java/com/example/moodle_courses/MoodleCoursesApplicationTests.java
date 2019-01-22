@@ -17,7 +17,7 @@ public class MoodleCoursesApplicationTests {
 	@Autowired
 	private MainController controller;
 	
-	// Lets test that controller exists in project and works
+	// testataan että controller toimii 
 	@Test
 	public void contextLoads() throws Exception {
 		assertThat(controller).isNotNull();

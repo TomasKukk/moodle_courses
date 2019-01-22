@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+// mongodb document courses joka tallentaa columnit db:hen
 @Document(collection="courses")
 public class MoodleCourse {
 	
