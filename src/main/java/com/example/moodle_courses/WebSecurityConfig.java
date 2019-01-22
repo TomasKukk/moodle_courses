@@ -22,19 +22,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailServiceImpl userDetailsService;
 	
-//	@Bean
-//	@Override
-//	public UserDetailsService userDetailsService() {
-//		UserDetails user = User.withDefaultPasswordEncoder()
-//				.username("user")
-//				.password("password")
-//				.roles("USER")
-//				.build();
-//		return new InMemoryUserDetailsManager(user);
-//	}
-	
-	// evätään pyynnöt kaikkialle paitsi /css alkuiset
-	// forwardataan kaikki pyynnöt login sivustolle
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
