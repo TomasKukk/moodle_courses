@@ -14,10 +14,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.example.moodle_courses.web.MainController;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(MainController.class)
+//@WebMvcTest(MainController.class)
 public class WebLayerTest {
-	@Autowired
-	private MockMvc mock;
+//	@Autowired
+//	private MockMvc mock;
 	
 	@Test
 	public void testTesting() {

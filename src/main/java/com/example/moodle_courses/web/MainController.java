@@ -34,13 +34,11 @@ public class MainController {
 		return ("login");
 	}
 	// Redirect to index when /login throws to /
-//	@RequestMapping("/")
-//	public String toIndex () {
-//		return ("redirect:/index");
-//	}
-	
-	// Etsitään kurssi nimellä restful (palauttaa json) onnistuu /api/moodleCourses/{id} avulla 
-	
+	@RequestMapping("/")
+	public String toIndex () {
+		return ("redirect:/index");
+	}
+		
 	// Kurssien lisäämiselle
 	@RequestMapping("/addcourse")
 	public String showAllCourses (Model model) {
