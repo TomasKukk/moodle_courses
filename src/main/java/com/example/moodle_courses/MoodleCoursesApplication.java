@@ -41,12 +41,13 @@ public class MoodleCoursesApplication {
 					"https://hhmoodle.haaga-helia.fi/course/view.php?id=21311"));
 			kurssit.add(new MoodleCourse("Opon kurssi",
 					"https://hhmoodle.haaga-helia.fi/course/view.php?id=11493"));
-			
+			mrepo.saveAll(kurssit);
 			User user1 = new User("admin", "$2a$04$6igRFe7Ej12wI8qCH6nwVuzBSZP3Usbp1LpSihpHEJ/IOmvn6wCwO", "ADMIN");
 			User user2 = new User("user", "$2a$04$CTwjU69SNSNRxUOc477ZXuqjKryyh8XRnWX6GsEYJMjxgEQKyoX6m", "USER");
 			
 			user1.setCourses(kurssit);
 			urepo.save(user1);
+			urepo.save(user2);
 			List<User> users = urepo.findAll();
 			for (User u: users) {
 				System.out.println(u.toString());

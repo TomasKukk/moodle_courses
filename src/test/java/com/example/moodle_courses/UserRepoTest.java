@@ -16,9 +16,12 @@ import com.example.moodle_courses.domain.UserRepo;
 @RunWith(SpringRunner.class)
 @DataMongoTest
 public class UserRepoTest {
+	
+	// getterit ja setterit
 	@Autowired
 	private UserRepo repo;
 	
+	// tehdään pari testikäyttäjää ennen testien ajoa
 	@Before
 	public void doBefore() {
 		User user = new User("admin", "password", "ADMIN");
@@ -27,6 +30,12 @@ public class UserRepoTest {
 		repo.save(userTwo);
 	}
 	
+	// testataan että uudet kurssit on luotu
+	@Test
+	public void createNewCourse() {
+		assertThat(repo.findAll()).isNotEmpty();
+	}
+	 // Testataan, että käyttäjän haku käyttäjänimellä toimii halutusti	
 	@Test
 	public void findUserByUsernameShouldReturnUser() throws Exception {
 		User user = repo.findByUsername("admin");
@@ -34,11 +43,7 @@ public class UserRepoTest {
 		assertThat(user.getUsername()).isEqualTo("admin");
 	}
 	
-	@Test
-	public void createNewCourse() {
-		assertThat(repo.findAll()).isNotEmpty();
-	}
-	
+	// testataan että käyttäjien poistaminen tietokannasta toimii
 	@Test
 	public void deleteAllCourses() {
 		repo.deleteAll();

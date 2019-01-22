@@ -1,6 +1,7 @@
 package com.example.moodle_courses.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,10 +15,12 @@ import com.example.moodle_courses.domain.UserRepo;
 public class UserDetailServiceImpl implements UserDetailsService {
 	
 	private final UserRepo repo;
+	
 	@Autowired
 	public UserDetailServiceImpl(UserRepo repo) {
 		this.repo = repo;
 	}
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws 
 	UsernameNotFoundException {

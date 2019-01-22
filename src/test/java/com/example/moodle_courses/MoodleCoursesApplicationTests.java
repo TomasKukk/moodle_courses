@@ -12,10 +12,12 @@ import static org.assertj.core.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MoodleCoursesApplicationTests {
-
+	
+	// bringing getters and setters
 	@Autowired
 	private MainController controller;
 	
+	// Lets test that controller exists in project and works
 	@Test
 	public void contextLoads() throws Exception {
 		assertThat(controller).isNotNull();

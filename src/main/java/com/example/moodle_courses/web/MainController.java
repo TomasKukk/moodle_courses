@@ -11,30 +11,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.moodle_courses.domain.MongoRepo;
 import com.example.moodle_courses.domain.MoodleCourse;
-import com.example.moodle_courses.domain.User;
-import com.example.moodle_courses.domain.UserRepo;
 
 @Controller
 public class MainController {
 	// Asettaa setterit ja getterit automaattisesti
 	@Autowired
-	private UserRepo repo;
+	private MongoRepo repo;
 	
 
 	
 	// Restful kaikki kurssi (json)
 	@GetMapping("/courses")
-	public @ResponseBody List<User> courseListRest() {
+	public @ResponseBody List<MoodleCourse> courseListRest() {
 		System.out.print(repo.findAll());
-		return (List<User>) repo.findAll();
+		return (List<MoodleCourse>) repo.findAll();
 	}
-	
+	// redirect to login page
+	@RequestMapping("/login")
+	public String goToLogin() {
+		return ("login");
+	}
 	// Redirect to index when /login throws to /
-	@RequestMapping("/")
-	public String toIndex () {
-		return ("redirect:/index");
-	}
+//	@RequestMapping("/")
+//	public String toIndex () {
+//		return ("redirect:/index");
+//	}
 	
 	// Etsitään kurssi nimellä restful (palauttaa json) onnistuu /api/moodleCourses/{id} avulla 
 	
@@ -51,11 +54,11 @@ public class MainController {
 		return ("index");
 	}
 	// Tämä hoitaa POST pyynnön joka lisää uuden kurssin
-//	@PostMapping("/index")
-//	public String addNewCourse  (MoodleCourse course) {
-//		repo.save(course);
-//		return ("redirect:/index");
-//	}
+	@PostMapping("/index")
+	public String addNewCourse  (MoodleCourse course) {
+		repo.save(course);
+		return ("redirect:/index");
+	}
 //	//Käydyn kurssin poistaminen
 	@GetMapping("/delete/{id}")
 	public String deleteCourse (@PathVariable String id,

@@ -23,6 +23,7 @@ public class MoodleCourseRepoTest {
 	@Autowired
 	private MongoRepo repo;
 	
+	// luodaan pari kurssia ennen testejen ajoa
 	@Before
 	public void doBefore() {
 		MoodleCourse course = new MoodleCourse("name", "link");
@@ -31,11 +32,13 @@ public class MoodleCourseRepoTest {
 		repo.save(courseTwo);
 	}
 	
+	// testataan että kurssien luominen onnistui
 	@Test
 	public void createNewMoodleCourse() {
 		assertThat(repo.findAll()).isNotEmpty();
 	}
 	
+	// testataan, että kurssin etsiminen nimellä palauttaa oikean kurssin
 	@Test
 	public void findCourseByNameShouldReturnCourse() {
 		List<MoodleCourse> courses = repo.findByCourseName("name");
@@ -43,6 +46,7 @@ public class MoodleCourseRepoTest {
 		assertThat(courses.get(0).getCourseName()).isEqualTo("name");
 	}
 	
+	// testataan reposta kurssien poistoa, että toimii
 	@Test
 	public void deleteAllCourses() {
 		repo.deleteAll();
